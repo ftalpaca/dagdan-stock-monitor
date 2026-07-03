@@ -2,31 +2,26 @@ name: Dagdan Stock Monitor
 
 on:
   schedule:
-    
-cron: "7,22,37,52 * * * *"
-workflow_dispatch:,
+    - cron: "7,22,37,52 * * * *"
+  workflow_dispatch:
 
 jobs:
   check-stock:
     runs-on: ubuntu-latest
 
     steps:
-      
-name: Checkout repo
-      uses: actions/checkout@v4,
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-      
-name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: "3.11",
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
-      
-name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt,
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-      
-name: Run checker
-      run: python main.py
+      - name: Run checker
+        run: python main.py
