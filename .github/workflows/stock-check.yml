@@ -23,12 +23,5 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # 🔴 TEST STEP (temporary - confirms Discord works)
-      - name: Test Discord webhook
-        run: |
-          curl -H "Content-Type: application/json" \
-          -d '{"content":"TEST MESSAGE FROM GITHUB ACTIONS"}' \
-          https://discord.com/api/webhooks/1522403734993502229/zmtCvR0yzs1mYTkD4d_1BVNFjbp01V_29jnxtOLG5PIIFqZpQaEweznWwZPbzpQP845Q
-
       - name: Run checker
         run: python main.py
