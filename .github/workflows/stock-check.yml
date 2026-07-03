@@ -23,5 +23,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run checker
-        run: python main.py
+     - name: Run checker
+  working-directory: ${{ github.workspace }}
+  run: python main.py
