@@ -27,9 +27,9 @@ jobs:
       - name: Wait 15 minutes
         run: sleep 900
 
-      - name: Trigger next run
+      - name: Repeat check (restart workflow)
         run: |
-          curl -X POST https://api.github.com/repos/ftalpaca/dagdan-stock-monitor/actions/workflows/$(basename $GITHUB_WORKFLOW)/dispatches \
+          curl -X POST https://api.github.com/repos/ftalpaca/dagdan-stock-monitor/actions/workflows/stock-monitor.yml/dispatches \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             -d '{"ref":"main"}'
