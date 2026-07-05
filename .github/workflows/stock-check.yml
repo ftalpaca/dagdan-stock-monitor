@@ -1,6 +1,8 @@
 name: Dagdan Stock Monitor
 
 on:
+  schedule:
+    - cron: "*/15 * * * *"
   workflow_dispatch:
 
 jobs:
@@ -23,13 +25,3 @@ jobs:
 
       - name: Run checker
         run: python main.py
-
-      - name: Wait 15 minutes
-        run: sleep 900
-
-      - name: Repeat check (restart workflow)
-        run: |
-          curl -X POST https://api.github.com/repos/ftalpaca/dagdan-stock-monitor/actions/workflows/stock-check.yml/dispatches \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            -d '{"ref":"main"}'
